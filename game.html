@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verba Ferri — Game</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <div id="app">
+        <a href="./index.html" style="position:absolute;left:1rem;top:1rem;color:#787c7e;text-decoration:none;font-size:0.85rem;">← Verba Ferri</a>
+        <h1>Verba Ferri</h1>
+        <div id="grid"></div>
+        <div id="input-area">
+            <input type="text" id="guess-input" maxlength="5" placeholder="aaaaa" autocomplete="off">
+            <button id="submit-btn">Submit</button>
+        </div>
+        <div id="message"></div>
+        <div id="actions">
+            <button id="new-game-btn">New Game</button>
+            <button id="share-btn" disabled>Share</button>
+        </div>
+    </div>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations().then(function(registrations) {
+                for (var r of registrations) {
+                    console.log('Unregistering stale service worker:', r);
+                    r.unregister();
+                }
+            });
+        }
+    </script>
+    <script type="module">
+        import init from './pkg/verba_ferri.js';
+        try {
+            await init();
+            console.log('Verba Ferri WASM loaded');
+        } catch (e) {
+            console.error('Verba Ferri WASM init failed:', e);
+        }
+    </script>
+</body>
+</html>
