@@ -3,6 +3,11 @@
   "type": "module",
   "description": "A parody of Wordle using vector-space word matching",
   "version": "0.1.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ferrous-lux/verba_ferri"
+  },
   "files": [
     "verba_ferri_bg.wasm",
     "verba_ferri.js",

@@ -3,6 +3,8 @@ name = "verba_ferri"
 version = "0.1.0"
 edition = "2021"
 description = "A parody of Wordle using vector-space word matching"
+repository = "https://github.com/ferrous-lux/verba_ferri"
+license = "MIT"
 
 [lib]
 crate-type = ["cdylib", "rlib"]

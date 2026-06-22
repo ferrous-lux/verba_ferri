@@ -6,6 +6,12 @@
   <title>Verba Ferri — Words of Iron</title>
   <link rel="stylesheet" href="static/style.css">
   <meta name="theme-color" content="#6aaa64">
+  <link rel="manifest" href="static/manifest.json">
+  <link rel="icon" href="static/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="static/icon.svg">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Verba Ferri">
   <style>
     body {
       background: #121213;
@@ -284,5 +290,10 @@
       <a href="./game.html" class="play-btn-small" style="margin:1rem 0 0 0">▸&nbsp; PLAY NOW</a>
     </div>
   </div>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('static/sw.js');
+    }
+  </script>
 </body>
 </html>

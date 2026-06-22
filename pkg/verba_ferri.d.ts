@@ -28,7 +28,7 @@ export interface InitOutput {
     readonly init_ui: () => void;
     readonly dictionary_size: () => number;
     readonly submit_guess: (a: number, b: number) => [number, number, number];
-    readonly wasm_bindgen__convert__closures_____invoke__h21aff4dfd2c6a4cc: (a: number, b: number) => void;
+    readonly wasm_bindgen__convert__closures_____invoke__h40e1c0ab74d4731c: (a: number, b: number) => void;
     readonly __wbindgen_exn_store: (a: number) => void;
     readonly __externref_table_alloc: () => number;
     readonly __wbindgen_externrefs: WebAssembly.Table;
