@@ -8,6 +8,7 @@ use web_sys::{Blob, BlobPropertyBag, Document, Element, HtmlElement, HtmlInputEl
 use crate::dictionary::Dictionary;
 use crate::game::scoring::{score_guess, LetterState};
 
+const APP_URL: &str = "https://ferrous-lux.github.io/verba_ferri/";
 const MAX_GUESSES: usize = 6;
 const WORD_LENGTH: usize = 5;
 
@@ -181,7 +182,10 @@ impl GameUI {
     }
 
     fn generate_grid_text(&self) -> String {
-        let mut lines = String::from("Verba Ferri\n\n");
+        let mut lines = format!(
+            "<a href=\"{url}\">Verba Ferri</a>\n{url}\n\n",
+            url = APP_URL,
+        );
         for (_, score) in &self.rows {
             for state in score {
                 match state {
