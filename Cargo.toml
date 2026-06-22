@@ -14,6 +14,7 @@ wasm-bindgen = "0.2"
 js-sys = "0.3"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
+wasm-bindgen-futures = "0.4"
 once_cell = "1"
 console_error_panic_hook = "0.1"
 
@@ -25,6 +26,8 @@ web-sys = { version = "0.3", features = [
     "Document",
     "Element",
     "HtmlElement",
+    "Navigator",
+    "ShareData",
     "Url",
     "Window",
     "HtmlInputElement",

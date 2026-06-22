@@ -2,6 +2,7 @@ use std::rc::Rc;
 
 use wasm_bindgen::prelude::*;
 use wasm_bindgen::JsCast;
+use wasm_bindgen_futures::JsFuture;
 use web_sys::{Blob, BlobPropertyBag, Document, Element, HtmlElement, HtmlInputElement, Url};
 
 use crate::dictionary::Dictionary;
@@ -136,6 +137,25 @@ impl GameUI {
     }
 
     pub fn share(&self) -> Result<(), JsValue> {
+        let text = self.generate_grid_text();
+
+        let window = web_sys::window().ok_or_else(|| JsValue::from_str("no window"))?;
+        let navigator = window.navigator();
+
+        let has_share = js_sys::Reflect::has(&navigator, &JsValue::from_str("share"))
+            .unwrap_or(false);
+
+        if has_share {
+            let share_data = web_sys::ShareData::new();
+            share_data.set_text(&text);
+            let promise = navigator.share_with_data(&share_data);
+            let future = JsFuture::from(promise);
+            wasm_bindgen_futures::spawn_local(async move {
+                future.await.ok();
+            });
+            return Ok(());
+        }
+
         let svg = self.generate_svg();
         let arr = js_sys::Array::new();
         arr.push(&JsValue::from_str(&svg));
@@ -158,6 +178,21 @@ impl GameUI {
         body.remove_child(&html_link)?;
 
         Ok(())
+    }
+
+    fn generate_grid_text(&self) -> String {
+        let mut lines = String::from("Verba Ferri\n\n");
+        for (_, score) in &self.rows {
+            for state in score {
+                match state {
+                    LetterState::Green => lines.push('\u{1F7E9}'),
+                    LetterState::Yellow => lines.push('\u{1F7E8}'),
+                    LetterState::Grey => lines.push('\u{2B1B}'),
+                }
+            }
+            lines.push('\n');
+        }
+        lines
     }
 
     fn set_game_over(&self) {
