@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verba Ferri — Game</title>
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="manifest" href="static/manifest.json">
+    <link rel="icon" href="static/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="static/icon.svg">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Verba Ferri">
+</head>
+<body>
+    <div id="app">
+        <a href="./index.html" style="position:absolute;left:1rem;top:1rem;color:#787c7e;text-decoration:none;font-size:0.85rem;">← Verba Ferri</a>
+        <h1>Verba Ferri</h1>
+        <div id="grid"></div>
+        <div id="input-area">
+            <input type="text" id="guess-input" maxlength="5" placeholder="aaaaa" autocomplete="off">
+            <button id="submit-btn">Submit</button>
+        </div>
+        <div id="message"></div>
+        <div id="actions">
+            <button id="new-game-btn">New Game</button>
+            <button id="answer-btn" disabled>Show Answer</button>
+            <button id="share-btn" disabled>Share</button>
+            <button id="dict-btn">Dictionary</button>
+        </div>
+    </div>
+    <div id="dict-modal" style="display:none;">
+        <div id="dict-content">
+            <span id="dict-close">&times;</span>
+            <div id="dict-words"></div>
+        </div>
+    </div>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('static/sw.js');
+        }
+    </script>
+    <script>
+        document.getElementById('dict-btn').addEventListener('click', async function () {
+            const modal = document.getElementById('dict-modal');
+            const container = document.getElementById('dict-words');
+            if (!container.hasChildNodes()) {
+                const resp = await fetch('static/word-list.html');
+                const html = await resp.text();
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const words = doc.querySelector('.container');
+                if (words) container.innerHTML = words.innerHTML;
+            }
+            modal.style.display = 'flex';
+        });
+        document.getElementById('dict-close').addEventListener('click', function () {
+            document.getElementById('dict-modal').style.display = 'none';
+        });
+        document.getElementById('dict-modal').addEventListener('click', function (e) {
+            if (e.target === this) this.style.display = 'none';
+        });
+    </script>
+    <script type="module">
+        import init from './pkg/verba_ferri.js';
+        try {
+            await init();
+            console.log('Verba Ferri WASM loaded');
+        } catch (e) {
+            console.error('Verba Ferri WASM init failed:', e);
+        }
+    </script>
+</body>
+</html>

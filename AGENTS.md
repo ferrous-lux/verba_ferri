@@ -12,17 +12,11 @@ On the backend, we figure out which word matches closest to their entry to maxim
 # IMPORTANT: Always source cargo env first (local rust install is nonstandard)
 source ~/.cargo/env
 
-# Build (production)
-wasm-pack build --release
+# Full site build (WASM + assets → www/)
+./build-site.sh
 
-# Build (development)
-wasm-pack build --dev
-
-# Build for the web target
-wasm-pack build --target web
-
-# Dev server (using trunk)
-trunk serve --open
+# Quick dev server from www/
+python3 -m http.server 8080 --directory www/
 
 # Run all Rust tests
 cargo test
@@ -68,9 +62,13 @@ verba_ferri/
 │   ├── game/       # Game logic (matching, scoring)
 │   └── ui/         # UI rendering (DOM manipulation via web-sys)
 ├── tests/          # Integration tests
-├── static/         # Static assets (HTML, CSS)
+├── static/         # Static assets + generated word list
+├── build-site.sh   # Full site build script (outputs to www/)
+├── www/            # Deployable site root (generated, gitignored)
 ├── Cargo.toml      # Rust dependencies and metadata
-└── index.html      # Entry HTML for trunk
+├── index.html      # Marketing / splash page
+├── game.html       # Game page
+└── README.md
 ```
 
 ## Code Style Guidelines
