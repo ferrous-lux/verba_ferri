@@ -1,4 +1,4 @@
-const CACHE = "verba-ferri-v1";
+const CACHE = "verba-ferri-v2";
 
 const PRECACHE = [
   "../index.html",

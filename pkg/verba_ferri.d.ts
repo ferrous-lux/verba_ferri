@@ -8,6 +8,7 @@ export class GameUI {
     new_game(): void;
     share(): void;
     submit_guess(guess: string): any;
+    toggle_answer(): void;
 }
 
 export function dictionary_size(): number;
@@ -25,6 +26,7 @@ export interface InitOutput {
     readonly gameui_new_game: (a: number) => void;
     readonly gameui_share: (a: number) => [number, number];
     readonly gameui_submit_guess: (a: number, b: number, c: number) => [number, number, number];
+    readonly gameui_toggle_answer: (a: number) => void;
     readonly init_ui: () => void;
     readonly dictionary_size: () => number;
     readonly submit_guess: (a: number, b: number) => [number, number, number];

@@ -24,9 +24,11 @@ pub struct GameUI {
     input_el: HtmlInputElement,
     submit_btn: HtmlElement,
     new_game_btn: HtmlElement,
+    answer_btn: HtmlElement,
     share_btn: HtmlElement,
     current_row: usize,
     answer: Option<String>,
+    answer_visible: bool,
     rows: Vec<(String, [LetterState; WORD_LENGTH])>,
 }
 
@@ -64,6 +66,11 @@ impl GameUI {
             .ok_or_else(|| JsValue::from_str("no share button"))?
             .dyn_into::<HtmlElement>()
             .map_err(|_| JsValue::from_str("share-btn is not HtmlElement"))?;
+        let answer_btn = document
+            .get_element_by_id("answer-btn")
+            .ok_or_else(|| JsValue::from_str("no answer button"))?
+            .dyn_into::<HtmlElement>()
+            .map_err(|_| JsValue::from_str("answer-btn is not HtmlElement"))?;
 
         Ok(GameUI {
             document,
@@ -72,9 +79,11 @@ impl GameUI {
             input_el,
             submit_btn,
             new_game_btn,
+            answer_btn,
             share_btn,
             current_row: 0,
             answer: None,
+            answer_visible: false,
             rows: Vec::new(),
         })
     }
@@ -95,6 +104,7 @@ impl GameUI {
             .answer
             .get_or_insert_with(|| DICT.with(|dict| dict.nearest_match(&guess).0))
             .clone();
+        self.answer_btn.remove_attribute("disabled").ok();
         let score = score_guess(&guess, &answer);
 
         let row = self.render_row(&guess, &score, &answer)?;
@@ -128,8 +138,13 @@ impl GameUI {
         }
         self.current_row = 0;
         self.answer = None;
+        self.answer_visible = false;
         self.rows.clear();
         self.message_el.set_text_content(None);
+        self.answer_btn
+            .set_attribute("disabled", "disabled")
+            .ok();
+        self.answer_btn.set_text_content(Some("Show Answer"));
         self.input_el.set_disabled(false);
         self.input_el.set_value("");
         self.submit_btn.remove_attribute("disabled").ok();
@@ -181,6 +196,20 @@ impl GameUI {
         Ok(())
     }
 
+    pub fn toggle_answer(&mut self) {
+        if let Some(ref answer) = self.answer {
+            if self.answer_visible {
+                self.message_el.set_text_content(None);
+                self.answer_btn.set_text_content(Some("Show Answer"));
+            } else {
+                self.message_el
+                    .set_text_content(Some(&format!("The word is: {}", answer)));
+                self.answer_btn.set_text_content(Some("Hide Answer"));
+            }
+            self.answer_visible = !self.answer_visible;
+        }
+    }
+
     fn generate_grid_text(&self) -> String {
         let mut lines = format!(
             "<a href=\"{url}\">Verba Ferri</a>\n{url}\n\n",
@@ -202,6 +231,9 @@ impl GameUI {
     fn set_game_over(&self) {
         self.input_el.set_disabled(true);
         self.submit_btn.set_attribute("disabled", "disabled").ok();
+        self.answer_btn
+            .set_attribute("disabled", "disabled")
+            .ok();
         self.share_btn.remove_attribute("disabled").ok();
     }
 
@@ -336,6 +368,18 @@ pub fn init_ui() -> Result<(), JsValue> {
     new_game_btn
         .add_event_listener_with_callback("click", new_game_closure.as_ref().unchecked_ref())?;
     new_game_closure.forget();
+
+    let gu = game_ui.clone();
+    let answer_btn = gu.borrow().answer_btn.clone();
+    let answer_closure = Closure::wrap(Box::new(move || {
+        gu.borrow_mut().toggle_answer();
+    }) as Box<dyn FnMut()>);
+    answer_btn
+        .add_event_listener_with_callback(
+            "click",
+            answer_closure.as_ref().unchecked_ref(),
+        )?;
+    answer_closure.forget();
 
     let gu = game_ui.clone();
     let share_btn = gu.borrow().share_btn.clone();

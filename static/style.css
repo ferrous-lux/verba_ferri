@@ -136,3 +136,65 @@ h1 {
     background-color: #3a3a3c;
     cursor: default;
 }
+
+#dict-btn {
+    background-color: #c9b458;
+}
+#dict-btn:hover {
+    background-color: #b8a347;
+}
+
+#dict-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 100;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+#dict-content {
+    background: #1a1a1b;
+    border: 1px solid #3a3a3c;
+    border-radius: 12px;
+    padding: 2rem;
+    max-width: 600px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+}
+#dict-close {
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #787c7e;
+    line-height: 1;
+}
+#dict-close:hover {
+    color: #ffffff;
+}
+#dict-words {
+    column-count: 5;
+    column-gap: 1.5em;
+    margin-top: 0.5rem;
+}
+#dict-words .word {
+    break-inside: avoid;
+    padding: 2px 0;
+    font-family: monospace;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #ccc;
+}
+@media (max-width: 600px) {
+    #dict-words {
+        column-count: 3;
+    }
+}

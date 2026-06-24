@@ -1,6 +1,6 @@
 [package]
 name = "verba_ferri"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 description = "A parody of Wordle using vector-space word matching"
 repository = "https://github.com/ferrous-lux/verba_ferri"
