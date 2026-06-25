@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Assemble www/ from templates, JSON data, and WASM build artifacts."""
 
+import argparse
 import json
 import re
 import shutil
@@ -140,8 +141,12 @@ def write_word_list(words, display_name, dst):
 
 
 def main():
-    www = ROOT / "www"
-    www.mkdir(parents=True, exist_ok=True)
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--output", default="www", help="Output directory (default: www)")
+    args = parser.parse_args()
+
+    out_dir = ROOT / args.output
+    out_dir.mkdir(parents=True, exist_ok=True)
 
     pkg_name, display_name, site_url, repo_url = read_cargo_metadata()
 
@@ -183,26 +188,26 @@ def main():
         return text
 
     for src_rel, dst in [
-        ("templates/index.html", www / "index.html"),
-        ("templates/game.html", www / "game.html"),
-        ("templates/sw.js", www / "sw.js"),
-        ("templates/manifest.json", www / "manifest.json"),
+        ("templates/index.html", out_dir / "index.html"),
+        ("templates/game.html", out_dir / "game.html"),
+        ("templates/sw.js", out_dir / "sw.js"),
+        ("templates/manifest.json", out_dir / "manifest.json"),
         ("templates/README.md", ROOT / "README.md"),
     ]:
         dst.write_text(apply((ROOT / src_rel).read_text()))
 
     for name in ["style.css", "icon.svg"]:
-        shutil.copy2(ROOT / "static" / name, www / name)
+        shutil.copy2(ROOT / "static" / name, out_dir / name)
 
-    write_word_list(words, display_name, www / "word-list.html")
+    write_word_list(words, display_name, out_dir / "word-list.html")
 
     pkg_src = ROOT / "pkg"
     for suffix in [".js", "_bg.wasm", ".d.ts", "_bg.wasm.d.ts"]:
         src_file = pkg_src / f"{pkg_name}{suffix}"
         if src_file.exists():
-            shutil.copy2(src_file, www / src_file.name)
+            shutil.copy2(src_file, out_dir / src_file.name)
 
-    print(f"Assembled www/ for {display_name} ({site_url})")
+    print(f"Assembled {args.output}/ for {display_name} ({site_url})")
 
 
 if __name__ == "__main__":

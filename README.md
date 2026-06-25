@@ -83,7 +83,7 @@ verba_ferri/
 │   └── ui/                  # DOM rendering (web-sys), event handlers
 ├── build.rs                # Generates config.rs from Cargo.toml metadata
 ├── Cargo.toml
-└── www/                    # Flat deployable output (generated, gitignored)
+└── www/ or docs/           # Build output (set via `./build-site.sh <dir>`; deploy www/ or docs/ to GH Pages)
 ```
 
 ## Forking

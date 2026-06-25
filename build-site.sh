@@ -9,10 +9,12 @@ wasm-pack build --release --target web
 echo "=== Running cargo build (trigger build.rs) ==="
 cargo build
 
-echo "=== Assembling www/ ==="
-rm -rf www
-mkdir -p www
+OUTPUT="${1:-www}"
 
-python3 build/assemble.py
+echo "=== Assembling ${OUTPUT}/ ==="
+rm -rf "${OUTPUT}"
+mkdir -p "${OUTPUT}"
+
+python3 build/assemble.py --output "${OUTPUT}"
 
 echo "=== Done ==="
