@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verba Ferri — Game</title>
-    <link rel="stylesheet" href="static/style.css">
-    <link rel="manifest" href="static/manifest.json">
-    <link rel="icon" href="static/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="static/icon.svg">
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="icon.svg">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Verba Ferri">
@@ -37,7 +37,7 @@
     </div>
     <script>
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('static/sw.js');
+            navigator.serviceWorker.register('sw.js');
         }
     </script>
     <script>
@@ -45,7 +45,7 @@
             const modal = document.getElementById('dict-modal');
             const container = document.getElementById('dict-words');
             if (!container.hasChildNodes()) {
-                const resp = await fetch('static/word-list.html');
+                const resp = await fetch('word-list.html');
                 const html = await resp.text();
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(html, 'text/html');
@@ -62,7 +62,7 @@
         });
     </script>
     <script type="module">
-        import init from './pkg/verba_ferri.js';
+        import init from './verba_ferri.js';
         try {
             await init();
             console.log('Verba Ferri WASM loaded');

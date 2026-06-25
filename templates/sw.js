@@ -1,13 +1,13 @@
-const CACHE = "verba-ferri-v2";
+const CACHE = "@@PKG_NAME@@-v2";
 
 const PRECACHE = [
-  "../index.html",
-  "../game.html",
+  "index.html",
+  "game.html",
   "style.css",
   "manifest.json",
   "icon.svg",
-  "../pkg/verba_ferri.js",
-  "../pkg/verba_ferri_bg.wasm",
+  "@@PKG_NAME@@.js",
+  "@@PKG_NAME@@_bg.wasm",
   "word-list.html",
 ];
 

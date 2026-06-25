@@ -1,8 +1,8 @@
 {
-  "name": "Verba Ferri",
-  "short_name": "Verba Ferri",
+  "name": "@@DISPLAY_NAME@@",
+  "short_name": "@@DISPLAY_NAME@@",
   "description": "A Wordle parody where there is no secret word",
-  "start_url": "../game.html",
+  "start_url": "game.html",
   "display": "standalone",
   "background_color": "#121213",
   "theme_color": "#6aaa64",

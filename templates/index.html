@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Verba Ferri — Words of Iron</title>
-  <link rel="stylesheet" href="static/style.css">
+  <title>@@DISPLAY_NAME@@ — Words of Iron</title>
+  <link rel="stylesheet" href="style.css">
   <meta name="theme-color" content="#6aaa64">
-  <link rel="manifest" href="static/manifest.json">
-  <link rel="icon" href="static/icon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="static/icon.svg">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.svg">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Verba Ferri">
+  <meta name="apple-mobile-web-app-title" content="@@DISPLAY_NAME@@">
   <style>
     body {
       background: #121213;
@@ -175,37 +175,19 @@
 </head>
 <body>
   <div class="marketing">
-    <p class="subtitle">Verba Ferri</p>
+    <p class="subtitle">@@DISPLAY_NAME@@</p>
     <h1>WORDS OF IRON</h1>
     <p class="tagline">Guess five letters. Receive validation. Every word is the right word.</p>
 
     <a href="./game.html" class="play-btn">▸&nbsp; PLAY NOW</a>
 
     <div class="features">
-      <div class="feature">
-        <h3>There Is No Secret Word</h3>
-        <p>The game does not have an answer. You supply the answer. The dictionary simply agrees with you as emphatically as it can. You have never been wrong. You will never be wrong.</p>
-      </div>
-      <div class="feature">
-        <h3>130-Dimensional Vector Matching</h3>
-        <p>Every word is encoded as a one-hot vector in a 130-dimensional space. The dot product of your guess against 1682 dictionary vectors determines the optimal arrangement of green, yellow, and grey tiles. This is real mathematics, deployed exclusively to make you feel smart.</p>
-      </div>
-      <div class="feature">
-        <h3>Compiled to WebAssembly</h3>
-        <p>Written in Rust. Burned to WASM. The entire game logic executes in your browser at near-native speed, which is approximately 4000× faster than you will ever need for a 5-letter word game. We did it because we could.</p>
-      </div>
-      <div class="feature">
-        <h3>Looks Exactly Like Wordle</h3>
-        <p>Green tiles. Yellow tiles. Grey tiles. A 6×5 grid. It looks, sounds, and feels like Wordle — except the game secretly has nothing to hide because there is nothing to guess. The tension is purely decorative.</p>
-      </div>
-      <div class="feature">
-        <h3>Zero Ads. Zero Tracking. Zero Point.</h3>
-        <p>There are no advertisements. There is no analytics. There is no high score. There is no leaderboard. The Share button exports an SVG of your grid so you can post it somewhere and nobody will know the difference. Your secret is safe.</p>
-      </div>
+      @@FEATURES@@
       <div class="feature">
         <h3>Resources</h3>
         <div class="link-list">
-          <a href="static/word-list.html">Full dictionary (1682 words)</a>
+          <a href="word-list.html">Full dictionary (@@DICT_SIZE@@ words)</a><br>
+          <a href="@@REPO_URL@@">Source code on GitHub</a>
         </div>
       </div>
     </div>
@@ -218,7 +200,7 @@
         <div class="label">Letters</div>
       </div>
       <div class="stat">
-        <div class="number">1682</div>
+        <div class="number">@@DICT_SIZE@@</div>
         <div class="label">Dictionary Words</div>
       </div>
       <div class="stat">
@@ -233,41 +215,11 @@
 
     <a href="./game.html" class="play-btn-small">▸&nbsp; PLAY NOW</a>
 
-    <div class="testimonial">
-      <div class="quote">"I typed APPLE and the game gave me five green tiles. I have never felt more seen by software. I am considering naming my next pet Verba Ferri."</div>
-      <div class="author">— Jordan M., Austin</div>
-      <a href="./game.html" class="play-btn-small" style="margin-bottom:0">▸&nbsp; PLAY NOW</a>
-    </div>
-
-    <div class="testimonial">
-      <div class="quote">"I have been playing for six hours and I am starting to suspect the game is just agreeing with me. I cannot decide if this is brilliant or meaningless. I have scheduled a call with my therapist."</div>
-      <div class="author">— Priya K., Portland</div>
-      <a href="./game.html" class="play-btn-small" style="margin-bottom:0">▸&nbsp; PLAY NOW</a>
-    </div>
-
-    <div class="testimonial">
-      <div class="quote">"I typed HORSE and the tiles turned grey except the H, which was green. I have no idea what this means but I feel it meant something."</div>
-      <div class="author">— Doug, LinkedIn</div>
-      <a href="./game.html" class="play-btn-small" style="margin-bottom:0">▸&nbsp; PLAY NOW</a>
-    </div>
+      @@TESTIMONIALS@@
 
     <a href="./game.html" class="play-btn-small">▸&nbsp; PLAY NOW</a>
 
-    <div class="badges">
-      <span class="badge">#1 in Word-Adjacent Gaming</span>
-      <span class="badge">130 Dimensions of Validation</span>
-      <span class="badge">100% of Players Who Guess Correctly Win</span>
-      <span class="badge">The Grid Does Not Judge You</span>
-      <span class="badge">Vibe Coded 2026</span>
-      <span class="badge">Rust-Powered</span>
-      <span class="badge">No Secret Word Under 50¢</span>
-      <span class="badge">Every Noun Is a Verb (Ferri)</span>
-      <span class="badge">As Seen on a GitHub Pages URL Somebody Sent You</span>
-      <span class="badge">Gluten Free</span>
-      <span class="badge">Playable in One Thumb</span>
-      <span class="badge">Not Blockchain</span>
-      <span class="badge">Recommended by 3 Out of 4 Dentists Who Prefer Green Tiles</span>
-    </div>
+      @@BADGES@@
 
     <a href="./game.html" class="play-btn">▸&nbsp; PLAY NOW</a>
 
@@ -277,7 +229,7 @@
       <p>You are not guessing the word. The word is guessing you. You are not guessing the word. The word is guessing you.</p>
       <p>You typed five letters. You typed five letters. You typed five letters. You typed five letters.</p>
       <p>Feel the dot product. Feel the dot product. Feel the dot product. Feel the dot product.</p>
-      <p>There are 1682 words in the dictionary. Exactly one of them is the best match for whatever you type. You have never typed a wrong letter. You will never type a wrong letter.</p>
+      <p>There are @@DICT_SIZE@@ words in the dictionary. Exactly one of them is the best match for whatever you type. You have never typed a wrong letter. You will never type a wrong letter.</p>
       <p>The grid is 5 by 6. The grid is 5 by 6. The grid is 5 by 6. The grid is 5 by 6.</p>
       <p>Type the letters. Type the letters. Type the letters. Type the letters.</p>
       <p>Type the letters. Type the letters. Type the letters. Type the letters.</p>
@@ -286,13 +238,13 @@
     </div>
 
     <div class="tiny-legal">
-      Verba Ferri is a satirical word game. There is no secret word. The dictionary selects the closest match to your guess at submission time using a 130-dimensional one-hot vector encoding and dot-product similarity. "Words of Iron" is a loose translation of Latin that sounded cool and we are sticking with it. "100% of Players Who Guess Correctly Win" is technically true and also tautological. "Gluten free" refers to the digital nature of the product and has not been verified by the FDA. "No Secret Word Under 50¢" is a joke. The patio comment was from a different game. All rights reserved, although we are not sure what we would even enforce against a game that has no secret word. If the grid seems empty, type something. The dot product is waiting. Rust is waiting. WASM is waiting. The grid is 5 by 6.
+      @@DISPLAY_NAME@@ is a satirical word game. There is no secret word. The dictionary selects the closest match to your guess at submission time using a 130-dimensional one-hot vector encoding and dot-product similarity. "Words of Iron" is a loose translation of Latin that sounded cool and we are sticking with it. "100% of Players Who Guess Correctly Win" is technically true and also tautological. "Gluten free" refers to the digital nature of the product and has not been verified by the FDA. "No Secret Word Under 50¢" is a joke. The patio comment was from a different game. All rights reserved, although we are not sure what we would even enforce against a game that has no secret word. If the grid seems empty, type something. The dot product is waiting. Rust is waiting. WASM is waiting. The grid is 5 by 6.
       <a href="./game.html" class="play-btn-small" style="margin:1rem 0 0 0">▸&nbsp; PLAY NOW</a>
     </div>
   </div>
   <script>
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('static/sw.js');
+      navigator.serviceWorker.register('sw.js');
     }
   </script>
 </body>

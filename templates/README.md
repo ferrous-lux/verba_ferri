@@ -1,8 +1,8 @@
-# Verba Ferri
+# @@DISPLAY_NAME@@
 
 *Words of Iron* — A Wordle parody where there is no secret word.
 
-[https://ferrous-lux.github.io/verba_ferri/](https://ferrous-lux.github.io/verba_ferri/)
+[@@SITE_URL@@](@@SITE_URL@@)
 
 You type a five-letter guess. The game finds the dictionary word that best matches your guess, colouring tiles green (exact position), yellow (wrong position), or grey (not present). The illusion is seamless — it looks and feels exactly like Wordle, but the answer is always optimised to agree with you.
 
@@ -38,7 +38,7 @@ Duplicate letters are handled correctly: each instance in the answer can only be
 - **Compilation target:** WebAssembly (via `wasm-bindgen`)
 - **DOM manipulation:** `web-sys` — no JavaScript framework
 - **Serialisation:** `serde` / `serde_json`
-- **Dictionary:** ~1683 five-letter words, embedded at compile time via `include_str!`
+- **Dictionary:** ~@@DICT_SIZE@@ five-letter words, embedded at compile time via `include_str!`
 
 ## Build & run
 
@@ -58,7 +58,7 @@ Open http://localhost:8080 in a browser.
 ## Project structure
 
 ```
-verba_ferri/
+@@PKG_NAME@@/
 ├── site_data/               # Marketing content (edit these to rebrand)
 │   ├── features.json
 │   ├── testimonials.json

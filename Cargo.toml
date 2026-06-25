@@ -6,6 +6,10 @@ description = "A parody of Wordle using vector-space word matching"
 repository = "https://github.com/ferrous-lux/verba_ferri"
 license = "MIT"
 
+[package.metadata.site]
+display_name = "Verba Ferri"
+site_url = "https://ferrous-lux.github.io/verba_ferri/"
+
 [lib]
 crate-type = ["cdylib", "rlib"]
 
